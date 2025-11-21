@@ -1,0 +1,46 @@
+/* src/pages/Gallery.css */
+
+/* ICONS — UNICODE (ALWAYS VISIBLE) */
+.ig-btn::before {
+  font-size: 1.6rem;
+  transition: all 0.2s;
+}
+
+.ig-btn:nth-child(1)::before { content: 'empty heart'; } /* Like */
+.ig-btn:nth-child(2)::before { content: 'comment'; }   /* Comment */
+.ig-btn:nth-child(3)::before { content: 'share'; }    /* Share */
+
+.ig-btn.liked::before { 
+  content: 'filled heart'; 
+  color: #ed4956; 
+  animation: heartBeat 0.4s ease;
+}
+
+.ig-save::before {
+  content: 'empty bookmark';
+  font-size: 1.5rem;
+}
+
+.ig-save.saved::before {
+  content: 'filled bookmark';
+  color: #262626;
+}
+
+/* HOVER */
+.ig-btn:hover::before {
+  transform: scale(1.2);
+}
+
+/* ANIMATIONS */
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+/* FALLBACK AVATAR */
+.ig-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
