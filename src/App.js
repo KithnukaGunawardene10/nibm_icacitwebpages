@@ -15,6 +15,7 @@ function App() {
   const location = useLocation();
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Track details data
   const trackDetails = {
@@ -225,40 +226,64 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
+  // Toggle mobile menu
+  const toggleMenu = () => {
+    setIsMenuOpen(prev => !prev);
+  };
+
+  // Lock scroll when menu is open (prevents background scrolling)
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
+  // Close menu when clicking a link (optional but smooth UX)
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <>
-      <header className="header">
-        <div className="top-bar">
-          <div className="logo">
-            <img src="ICACITLogo.png" alt="ICACIT 2025" className="glass-logo" />
-          </div>
-          <nav>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li>
-                <a href="#tracks-section" className="smooth-scroll">Tracks and Themes</a>
-              </li>
-              <li>
-                <a href="#timeline-section" className="smooth-scroll">Important Dates</a>
-              </li>
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle">Submission</a>
-                <ul className="dropdown-menu">
-                  <li><Link to="/call-for-papers">Call For Papers</Link></li>
-                  <li><Link to="/author-guidelines">Author Guidelines</Link></li>
-                  <li><Link to="/submit-paper">Submit Paper</Link></li>
-                  <li><Link to="/camera-ready-submission">Camera Ready Paper Submission</Link></li>
-                  <li><Link to="/presentation-guidelines">Presentation Submission Guidelines</Link></li>
-                </ul>
-              </li>
-              <li><Link to="/registration">Registration</Link></li>
-              <li><Link to="/committee">Organizing Committee</Link></li>
-              <li><Link to="/ijacit-journal">IJACIT JOURNAL</Link></li>
-              <li><Link to="">GALLERY</Link></li>
-            </ul>
-          </nav>
-        </div>
+      <div className="top-bar">
+  <div className="logo">
+    <img src="ICACITLogo.png" alt="ICACIT 2026" className="glass-logo" />
+  </div>
 
+  {/* Hamburger */}
+  <button className="mobile-menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  {/* Navigation - Centered Properly */}
+  <nav className="main-nav">
+    <ul className="nav-list">
+      <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+      <li><a href="#tracks-section" className="smooth-scroll" onClick={closeMenu}>Tracks and Themes</a></li>
+      <li><a href="#timeline-section" className="smooth-scroll" onClick={closeMenu}>Important Dates</a></li>
+
+      <li className="dropdown">
+        <span className="dropdown-toggle">Submission</span>
+        <ul className="dropdown-menu">
+          <li><Link to="/call-for-papers" onClick={closeMenu}>Call For Papers</Link></li>
+          <li><Link to="/author-guidelines" onClick={closeMenu}>Author Guidelines</Link></li>
+          <li><Link to="/submit-paper" onClick={closeMenu}>Submit Paper</Link></li>
+          <li><Link to="/camera-ready-submission" onClick={closeMenu}>Camera Ready Paper Submission</Link></li>
+          <li><Link to="/presentation-guidelines" onClick={closeMenu}>Presentation Submission Guidelines</Link></li>
+        </ul>
+      </li>
+
+      <li><Link to="/registration" onClick={closeMenu}>Registration</Link></li>
+      <li><Link to="/committee" onClick={closeMenu}>Organizing Committee</Link></li>
+      <li><Link to="/ijacit-journal" onClick={closeMenu}>IJACIT JOURNAL</Link></li>
+      <li><Link to="/gallery" onClick={closeMenu}>GALLERY</Link></li>
+    </ul>
+  </nav>
+</div>
+        
         <div className="hero">
           <div className="glass-title">
             <h1>The International Conference on <br />Advanced Computing and Information Technology</h1>
@@ -287,7 +312,7 @@ function App() {
           <Route path="/ijacit-journal" element={<IJACITJournal />} />
           <Route path="/gallery" element={<Gallery />} />
         </Routes>
-      </header>
+      
        
       <section className="about-section">
         <div className="about-container">
