@@ -2684,59 +2684,159 @@ html {
 }
 
 /* MOBILE: HAMBURGER + FULLSCREEN MENU */
+/* ====================== MOBILE MENU – LUXURY EDITION ====================== */
 @media (max-width: 992px) {
-  .mobile-menu-toggle {
-    display: flex;
-  }
+  .mobile-menu-toggle { display: flex !important; }
 
   .main-nav {
     position: fixed;
     top: 0; left: 0;
-    width: 100%; height: 100vh;
-    background: rgba(0, 0, 0, 0.98);
-    backdrop-filter: blur(30px);
+    width: 100vw;
+    height: 100dvh;
+    background: linear-gradient(135deg, 
+      rgba(10, 15, 40, 0.98) 0%, 
+      rgba(5, 8, 30, 0.95) 100%);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s ease;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     z-index: 999;
+    padding: 20px;
+    overflow-y: auto;
   }
 
-  body.menu-open .main-nav {
+  .top-bar.menu-open .main-nav {
     opacity: 1;
     visibility: visible;
+    pointer-events: all;
   }
 
-  .main-nav ul {
+  .nav-list {
     flex-direction: column;
-    gap: 24px;
-    text-align: center;
+    gap: 22px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 40px 0;
   }
 
+  /* MAIN MENU ITEMS – GORGEOUS GLASS BUTTONS */
   .main-nav a,
-  .dropdown-toggle {
-    font-size: 1.4rem;
-    padding: 16px 40px;
-    width: 80%;
-    margin: 0 auto;
-    border-radius: 30px;
+  .dropdown-toggle-wrapper {
+    display: block;
+    width: 100%;
+    padding: 20px 32px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 28px;
+    color: #e0ffff;
+    font-size: 1.45rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 1.2px;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .main-nav a::before,
+  .dropdown-toggle-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), transparent);
+    transition: 0.7s;
+  }
+
+  .main-nav a:hover::before,
+  .dropdown-toggle-wrapper:hover::before {
+    left: 100%;
+  }
+
+  .main-nav a:hover,
+  .dropdown-toggle-wrapper:hover {
+    background: rgba(0, 255, 255, 0.18);
+    color: #00ffff;
+    transform: translateY(-6px);
+    box-shadow: 
+      0 20px 40px rgba(0, 255, 255, 0.25),
+      0 0 30px rgba(0, 255, 255, 0.3);
+    border-color: #00ffee;
+  }
+
+  /* SUBMISSION DROPDOWN ON MOBILE */
+  .dropdown-toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .dropdown-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.4s ease;
+  }
+  .dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
   }
 
   .dropdown-menu {
-    position: static;
-    transform: none;
-    background: rgba(255,255,255,0.1);
+    width: 100%;
+    margin: 18px 0 0;
+    padding: 0;
+    background: transparent;
     border: none;
-    margin-top: 12px;
-    box-shadow: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .dropdown.open .dropdown-menu {
+    opacity: 1;
+    max-height: 800px;
+    padding: 20px 0;
+  }
+
+  .dropdown-menu a {
+    padding: 16px 40px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    border-radius: 22px;
+    font-size: 1.3rem;
+    margin: 10px 0;
+    color: #ccffff;
+  }
+
+  .dropdown-menu a:hover {
+    background: rgba(0, 255, 255, 0.25);
+    color: white;
+    transform: translateX(12px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
   }
 }
 
 @media (max-width: 480px) {
-  .glass-logo { width: 120px; }
-  .top-bar { padding: 16px 4%; }
+  .main-nav a,
+  .dropdown-toggle-wrapper {
+    font-size: 1.35rem;
+    padding: 18px 28px;
+  }
+  .dropdown-menu a {
+    font-size: 1.25rem;
+    padding: 14px 32px;
+  }
 }
 
 /* PDF VIEWER — BEAUTIFUL & RESPONSIVE */

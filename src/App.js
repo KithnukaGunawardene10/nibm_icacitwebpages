@@ -16,6 +16,7 @@ function App() {
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   // Track details data
   const trackDetails = {
@@ -181,6 +182,12 @@ function App() {
     setSelectedTrack(null);
   };
 
+  const toggleDropdown = (e) => {
+  if (window.innerWidth <= 992) {
+    e.preventDefault();
+    setDropdownOpen(prev => !prev);
+  }
+};
   // Close modal when pressing Escape key
   useEffect(() => {
     const handleEscape = (event) => {
@@ -267,34 +274,34 @@ function App() {
 
   {/* MAIN NAVIGATION */}
   <nav className="main-nav">
-    <ul className="nav-list">
-      <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-      <li><a href="#tracks-section" onClick={closeMenu}>Tracks and Themes</a></li>
-      <li><a href="#timeline-section" onClick={closeMenu}>Important Dates</a></li>
+  <ul className="nav-list">
+    <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+    <li><a href="#tracks-section" onClick={closeMenu}>Tracks and Themes</a></li>
+    <li><a href="#timeline-section" onClick={closeMenu}>Important Dates</a></li>
 
-      {/* SUBMISSION DROPDOWN - FULLY FIXED */}
-      <li className="dropdown">
-        <div className="dropdown-toggle-wrapper">
-          <span className="dropdown-toggle">
-            Submission
-            <span className="dropdown-arrow">Down Arrow</span>
-          </span>
-        </div>
-        <ul className="dropdown-menu">
-          <li><Link to="/call-for-papers" onClick={closeMenu}>Call For Papers</Link></li>
-          <li><Link to="/author-guidelines" onClick={closeMenu}>Author Guidelines</Link></li>
-          <li><Link to="/submit-paper" onClick={closeMenu}>Submit Paper</Link></li>
-          <li><Link to="/camera-ready-submission" onClick={closeMenu}>Camera Ready Paper Submission</Link></li>
-          <li><Link to="/presentation-guidelines" onClick={closeMenu}>Presentation Submission Guidelines</Link></li>
-        </ul>
-      </li>
+    {/* SUBMISSION – COLLAPSES BEAUTIFULLY ON MOBILE */}
+    <li className={`dropdown ${dropdownOpen ? 'open' : ''}`}>
+      <div className="dropdown-toggle-wrapper" onClick={toggleDropdown}>
+        <span className="dropdown-toggle">
+          Submission
+          <span className="dropdown-arrow">Down Arrow</span>
+        </span>
+      </div>
+      <ul className="dropdown-menu">
+        <li><Link to="/call-for-papers" onClick={closeMenu}>Call For Papers</Link></li>
+        <li><Link to="/author-guidelines" onClick={closeMenu}>Author Guidelines</Link></li>
+        <li><Link to="/submit-paper" onClick={closeMenu}>Submit Paper</Link></li>
+        <li><Link to="/camera-ready-submission" onClick={closeMenu}>Camera Ready Paper Submission</Link></li>
+        <li><Link to="/presentation-guidelines" onClick={closeMenu}>Presentation Submission Guidelines</Link></li>
+      </ul>
+    </li>
 
-      <li><Link to="/registration" onClick={closeMenu}>Registration</Link></li>
-      <li><Link to="/committee" onClick={closeMenu}>Organizing Committee</Link></li>
-      <li><Link to="/ijacit-journal" onClick={closeMenu}>IJACIT JOURNAL</Link></li>
-      <li><Link to="/gallery" onClick={closeMenu}>GALLERY</Link></li>
-    </ul>
-  </nav>
+    <li><Link to="/registration" onClick={closeMenu}>Registration</Link></li>
+    <li><Link to="/committee" onClick={closeMenu}>Organizing Committee</Link></li>
+    <li><Link to="/ijacit-journal" onClick={closeMenu}>IJACIT JOURNAL</Link></li>
+    <li><Link to="/gallery" onClick={closeMenu}>GALLERY</Link></li>
+  </ul>
+</nav>
 </div>
         
         <div className="hero">
