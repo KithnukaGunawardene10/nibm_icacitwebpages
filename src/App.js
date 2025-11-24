@@ -248,25 +248,38 @@ function App() {
 
   return (
     <>
-      <div className="top-bar">
+         <div className={`top-bar ${isMenuOpen ? 'menu-open' : ''}`}>
   <div className="logo">
     <img src="ICACITLogo.png" alt="ICACIT 2026" className="glass-logo" />
   </div>
 
-  {/* Hamburger */}
-  <button className="mobile-menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
-    <span></span><span></span><span></span>
+  {/* HAMBURGER BUTTON */}
+  <button 
+    className="mobile-menu-toggle" 
+    onClick={toggleMenu}
+    aria-label="Toggle menu"
+    aria-expanded={isMenuOpen}
+  >
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
 
-  {/* Navigation - Centered Properly */}
+  {/* MAIN NAVIGATION */}
   <nav className="main-nav">
     <ul className="nav-list">
       <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-      <li><a href="#tracks-section" className="smooth-scroll" onClick={closeMenu}>Tracks and Themes</a></li>
-      <li><a href="#timeline-section" className="smooth-scroll" onClick={closeMenu}>Important Dates</a></li>
+      <li><a href="#tracks-section" onClick={closeMenu}>Tracks and Themes</a></li>
+      <li><a href="#timeline-section" onClick={closeMenu}>Important Dates</a></li>
 
+      {/* SUBMISSION DROPDOWN - FULLY FIXED */}
       <li className="dropdown">
-        <span className="dropdown-toggle">Submission</span>
+        <div className="dropdown-toggle-wrapper">
+          <span className="dropdown-toggle">
+            Submission
+            <span className="dropdown-arrow">Down Arrow</span>
+          </span>
+        </div>
         <ul className="dropdown-menu">
           <li><Link to="/call-for-papers" onClick={closeMenu}>Call For Papers</Link></li>
           <li><Link to="/author-guidelines" onClick={closeMenu}>Author Guidelines</Link></li>
