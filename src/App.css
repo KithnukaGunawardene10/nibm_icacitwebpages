@@ -122,26 +122,35 @@ body {
 }
 
 /* DROPDOWN - DESKTOP (NO MORE DISAPPEARING) */
-.dropdown {
-  position: relative;
+/* REMOVE THE UGLY TEXT + EXTRA BUBBLE */
+.dropdown-arrow {
+  display: none !important;   /* kills the old "Down Arrow" text */
 }
+
+/* BEAUTIFUL SVG ICON + ROTATION */
+.dropdown-icon {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  color: inherit;
+}
+.dropdown.open .dropdown-icon,
+.dropdown:hover .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+/* FIX THE EXTRA OUTER GLASS BUBBLE (this was the real culprit) */
 .dropdown-toggle-wrapper {
-  cursor: pointer;
-  padding: 11px 20px;
-  border-radius: 50px;
-  background: rgba(255,255,255,0.09);
-  transition: all 0.4s ease;
-}
-.dropdown-toggle {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
 }
-.dropdown-arrow {
-  font-size: 0.7rem;
-  transition: transform 0.3s;
+
+/* Make sure the hover effect stays clean */
+.dropdown-toggle-wrapper:hover {
+  background: rgba(0,230,255,0.22) !important;
 }
-.dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
 
 .dropdown-menu {
   position: absolute;
