@@ -363,6 +363,15 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Microsoft CMT Service Notice */}
+      <section className="cmt-notice-section">
+        <div className="cmt-notice-container">
+          <p>
+            The Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.
+          </p>
+        </div>
+      </section>
  
 {/* CONFERENCE TRACKS — WIDER CARDS */}
 <section className="tracks-section" id="tracks-section">
