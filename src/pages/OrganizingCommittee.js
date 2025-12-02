@@ -77,7 +77,7 @@ export default function OrganizingCommittee() {
         <StaffCard img="MI.jpg" name="Mr. Ilham Rasif" title="Consultant/ Lecturer" />
         <StaffCard img="KW.jpg" name="Miss. Kavishna Wijesinghe" title="Consultant/ Lecturer"/>
         <StaffCard img="PM.png" name="Ms. Pavithra Maheshwara" title="Consultant/ Lecturer"/>
-        <StaffCard img=".png" name="Ms. Amaya Lokuliyana" title="Consultant/ Lecturer"/>
+        <StaffCard img="CL.png" name="Ms. Amaya Lokuliyana" title="Consultant/ Lecturer"/>
         <StaffCard img="KG.png" name="Mr. Kithnuka Gunawardene" title="Demonstrator"/>
         <StaffCard img="/photos/supun.jpg" name="Mr. Supun Liyanage" title="Marketing Officer/ Graphic Designer"/>
         

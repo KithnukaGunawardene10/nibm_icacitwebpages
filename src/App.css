@@ -154,10 +154,17 @@ body {
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 18px);
   left: 50%;
   transform: translateX(-50%);
-  width: 340px;
+  width: 1400px !important;           /* ← WIDER MENU (was 360 → now 460) */
+  min-width: 1400px !important;
+      
+  border-radius: 32px !important;
+  border: 2.5px solid rgba(0, 255, 255, 0.55) !important;
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(0, 255, 255, 0.35) !important;
   padding: 20px 0;
   background: rgba(20,22,40,0.96);
   backdrop-filter: blur(40px);
@@ -2383,8 +2390,10 @@ html {
 }
 
 .image-placeholder-wide {
-  width: 100%;
-  height: 180px;
+  width: 100% !important;
+  height: 240px !important;        /* ← SAME HEIGHT FOR ALL */
+  max-width: 100%;
+  object-fit: cover;
   background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
   border-radius: 15px;
   display: flex;
@@ -2400,6 +2409,47 @@ html {
 .track-subtopics-wide {
   flex: 3;
   min-width: 0; /* Allow text to wrap properly */
+}
+
+.track-image-wide,
+.track-details-image,
+.image-placeholder-wide {
+    width: 100% !important;
+    height: 140px !important; 
+    align-items: center !important;     /* vertical center */
+    justify-content: center !important; /* horizontal center *//* ← SAME HEIGHT FOR ALL */
+    max-width: 100%;
+    object-fit: cover;               /* ← Keeps aspect ratio, crops neatly */
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+   
+    background: #f0f0f0;
+    
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+.track-image-wide img,
+.track-details-image img,
+.image-placeholder-wide img {
+  max-width: 85% !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 90% !important;     /* prevents touching edges */
+    max-height: 90% !important;
+    object-fit: cover;               /* ← Critical: fills box, crops edges cleanly */
+    display: block;
+    border-radius: 20px;
+}
+
+/* For the placeholder text when no image */
+.image-placeholder
+.image-placeholder-wide::before,
+.track-image-wide:empty::before {
+    content: "Track Image";
+    font-size: 1.1rem;
+    color: #999;
+    font-weight: 500;
 }
 
 .track-subtopics-wide h4 {

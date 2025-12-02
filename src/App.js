@@ -281,23 +281,20 @@ function App() {
 
     {/* SUBMISSION – COLLAPSES BEAUTIFULLY ON MOBILE */}
     <li className={`dropdown ${dropdownOpen ? 'open' : ''}`}>
-  <div className="dropdown-toggle-wrapper" onClick={toggleDropdown}>
-    <span className="dropdown-toggle">
-      Submissions
-      <svg className="dropdown-icon" viewBox="0 0 24 24" width="18" height="18">
-        <path fill="currentColor" d="M7 10l5 5 5-5z"/>
-      </svg>
-    </span>
-  </div>
-
-  <ul className="dropdown-menu">
-    <li><Link to="/call-for-papers" onClick={closeMenu}>Call For Papers</Link></li>
-    <li><Link to="/author-guidelines" onClick={closeMenu}>Author Guidelines</Link></li>
-    <li><Link to="/submit-paper" onClick={closeMenu}>Submit Paper</Link></li>
-    <li><Link to="/camera-ready-submission" onClick={closeMenu}>Camera Ready Paper Submission</Link></li>
-    <li><Link to="/presentation-guidelines" onClick={closeMenu}>Presentation Submission Guidelines</Link></li>
-  </ul>
-</li>
+      <div className="dropdown-toggle-wrapper" onClick={toggleDropdown}>
+        <span className="dropdown-toggle">
+          Submissions
+          <span className="dropdown-arrow">Down Arrow</span>
+        </span>
+      </div>
+      <ul className="dropdown-menu">
+        <li><Link to="/call-for-papers" onClick={closeMenu}>Call For Papers</Link></li>
+        <li><Link to="/author-guidelines" onClick={closeMenu}>Author Guidelines</Link></li>
+        <li><Link to="/submit-paper" onClick={closeMenu}>Submit Paper</Link></li>
+        <li><Link to="/camera-ready-submission" onClick={closeMenu}>Camera Ready Paper Submission</Link></li>
+        <li><Link to="/presentation-guidelines" onClick={closeMenu}>Presentation Submission Guidelines</Link></li>
+      </ul>
+    </li>
 
     <li><Link to="/registration" onClick={closeMenu}>Registration</Link></li>
     <li><Link to="/committee" onClick={closeMenu}>Organizing Committee</Link></li>
@@ -310,7 +307,7 @@ function App() {
         <div className="hero">
           <div className="glass-title">
             <h1>The International Conference on <br />Advanced Computing and Information Technology</h1>
-            <p>26<sup>th</sup> March 2026</p>
+            <p>26<sup>th</sup> February 2026</p>
           </div>
 
           <div className="glass-countdown">
